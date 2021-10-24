@@ -1,26 +1,41 @@
-APP_NAME = application
+# Simple makefile template
+#
+# Create the following structure in makefile root folder
+#
+##########################
+# STRUCTURE OF PROJECT:
+# (you)-|
+#       |--->obj
+#       |
+#       |--->src
+#       |
+#       |--->inc
+##########################
 
 CC = g++
-CFLAGS = -g -c -Wall
+
+APP = program
+
+CFLAGS = -g3 -c -Wall
 
 SRC_DIR = src/
-SRC_FILES = $(wildcard $(SRC_DIR)*)
-FILES_NAMES = $(basename $(notdir $(SRC_FILES)))
+SRC_FILES = $(basename $(notdir $(wildcard $(SRC_DIR)*)))
 
 INC_DIR = inc/
 
 OBJ_DIR = obj/
-OBJ_FILES = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_NAMES)))
+OBJ_FILES := $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-$(APP_NAME): $(OBJ_FILES)
-	$(CC) -I$(INC_DIR) -o $@ $^
+$(APP): $(OBJ_FILES)
+	$(CC) -o $@ $^
 
 define build-obj
-	$(CC) -I$(INC_DIR) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) $^ -o $@
 endef
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	$(call build-obj)
 
+.PHONY: clean
 clean:
-	rm	-rf *.s $(OBJ_DIR)*.o *.exe Logfile.txt
+	rm -rf $(APP) $(OBJ_DIR)*.o
