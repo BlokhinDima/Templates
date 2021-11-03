@@ -1,0 +1,70 @@
+{
+    "version": "2.0.0",
+
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CMake DEBUG cofigure and build",
+            "command": "cmake",
+            "args": [
+                "-DCMAKE_GENERATOR=MinGW Makefiles",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "..",
+                ";",
+                "cmake",
+                "--build",
+                "."
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "cmake -DCMAKE_BUILD_TYPE=Debug .. and cmake --build ."
+        },
+        
+        {
+            "type": "shell",
+            "label": "CMake RELEASE configure and build",
+            "command": "cmake",
+            "args": [
+                "-DCMAKE_GENERATOR=MinGW Makefiles",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "..",
+                ";",
+                "cmake",
+                "--build",
+                "."
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "cmake -DCMAKE_BUILD_TYPE=Release .. and cmake --build ."
+        },
+
+        {
+            "type": "shell",
+            "label": "Clean build",
+            "command": "rm",
+            "args": [
+                "-r",
+                "./*"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Clean build"
+        }
+
+    ]
+}
