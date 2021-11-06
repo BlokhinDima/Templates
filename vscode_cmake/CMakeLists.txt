@@ -1,3 +1,12 @@
+# # # STRUCTURE OF PROJECT: # # #
+# (you)-|
+#       |--->build
+#       |
+#       |--->src
+#       |
+#       |--->inc
+
+
 # # # CMake required version # # #
 cmake_minimum_required(VERSION 3.2)
 
